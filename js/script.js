@@ -1,17 +1,20 @@
-console.log('PlagiClean');
+const header = document.getElementById('header');
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('nav');
 
-const header = document.getElementById("header");
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 10) header.classList.add('active');
+  else header.classList.remove('active');
+});
 
-window.addEventListener("scroll",()=>{
+menuToggle?.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
 
-if(window.scrollY>50){
-
-header.classList.add("active");
-
-}else{
-
-header.classList.remove("active");
-
-}
-
+document.querySelectorAll('#nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  });
 });
